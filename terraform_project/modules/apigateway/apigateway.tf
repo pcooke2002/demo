@@ -168,7 +168,7 @@ resource "aws_api_gateway_documentation_part" "my_doc" {
     #    path   = "/items"
   }
   properties = jsonencode({
-    description = "API Documentation for my_api"
+    description = "API Documentation for my_api.   Performs CRUD operations on items dynammo db table."
   })
 }
 
