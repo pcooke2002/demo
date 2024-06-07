@@ -3,7 +3,7 @@ In the AWS developer associate exam.  60% of the questions involved Serverless (
 
 
 
-
+COMMENT TO SEE IF CREDEINTIALS ARE WORKING
 
 
 
