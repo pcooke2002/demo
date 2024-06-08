@@ -20,7 +20,7 @@ def response(status_code, body):
     }
 
 def lambda_handler(event, context):
-    xray_recorder.begin_segment('LambdaHandler')
+    # xray_recorder.begin_segment('LambdaHandler')  # cannot create segments in lambda functions
     logger.info(f"Received event: {json.dumps(event)}")
 
     http_method = event['httpMethod']
@@ -42,16 +42,16 @@ def lambda_handler(event, context):
     except Exception as e:
         logger.error(f"Error processing request: {str(e)}")
         return response(500, f"Error processing request: {str(e)}")
-    finally:
-        xray_recorder.end_segment()
+    # finally:
+    #     xray_recorder.end_segment()#cannot create segments in lambda functions
 
 def create_item(event):
     xray_recorder.begin_subsegment('CreateItem')
     item = json.loads(event['body'])
     item['id'] = int(item['id'])
     table.put_item(Item=item)
-    put_metric_data('my_api_gw_function', 'ItemCreated', 1)
-    xray_recorder.end_subsegment()
+    put_metric_data('my_api_gw_function', 'ItemCreated', 2)
+    xray_recorder.end_subsegment() #cannot create segments in lambda functions
     return response(200, {"message": "Item created", "item": item})
 
 def get_item(event):
@@ -69,6 +69,7 @@ def get_item(event):
         if item:
             return response(200, item)
         else:
+            put_metric_data('my_api_gw_function', 'Errors', 1)
             return response(404, {"message": "Item not found"})
     else:
         scan = table.scan()
