@@ -10,7 +10,7 @@ resource "aws_cloudwatch_metric_alarm" "alarm_create" {
   alarm_actions       = [aws_sns_topic.sns.arn]
 
   dimensions = {
-    FunctionName = var.lambda_function_name
+    FunctionName = "create_item_function"
   }
 }
 
@@ -26,7 +26,7 @@ resource "aws_cloudwatch_metric_alarm" "alarm_delete" {
   alarm_actions       = [aws_sns_topic.sns.arn]
 
   dimensions = {
-    FunctionName = var.lambda_function_name
+    FunctionName = "delete_item_function"
   }
 }
 

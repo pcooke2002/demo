@@ -9,7 +9,6 @@ patch_all()
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-
 dynamodb = boto3.resource('dynamodb')
 table_name = os.getenv('TABLE_NAME')
 table = dynamodb.Table(table_name)
@@ -51,6 +50,7 @@ def create_item(event):
     item = json.loads(event['body'])
     item['id'] = int(item['id'])
     table.put_item(Item=item)
+    put_metric_data('my_api_gw_function', 'ItemCreated', 1)
     xray_recorder.end_subsegment()
     return response(200, {"message": "Item created", "item": item})
 
@@ -101,6 +101,7 @@ def delete_item(event):
         item_id = int(params['id'])
         table.delete_item(Key={'id': int(item_id)})
         xray_recorder.end_subsegment()
+        put_metric_data('my_api_gw_function', 'ItemDeleted', 1)
         return response(200, {"message": "Item deleted"})
     else:
         xray_recorder.end_subsegment()
@@ -108,3 +109,27 @@ def delete_item(event):
 
 def options():
     return response(200, {"message": "Options request successful"})
+
+
+def put_metric_data(function_name, metric_name, metric_value):
+    xray_recorder.begin_subsegment('put_metric_data')
+    cloudwatch = boto3.client('cloudwatch')
+
+    response = cloudwatch.put_metric_data(
+        Namespace='AWS/Lambda',
+        MetricData=[
+            {
+                'MetricName': metric_name,
+                'Dimensions': [
+                    {
+                        'Name': 'FunctionName',
+                        'Value': function_name
+                    },
+                ],
+                'Value': metric_value,
+                'Unit': 'Count'
+            },
+        ]
+    )
+    xray_recorder.end_subsegment()
+    return response
