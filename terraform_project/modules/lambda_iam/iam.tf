@@ -23,7 +23,8 @@ resource "aws_iam_role" "lambda_role" {
           Action = [
             "dynamodb:*",
             "logs:*",
-            "xray:*"
+            "xray:*",
+            "cloudwatch:PutMetricData"
           ]
           Effect   = "Allow"
           Resource = "*"
