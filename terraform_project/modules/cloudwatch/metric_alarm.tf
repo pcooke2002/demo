@@ -26,8 +26,6 @@ resource "aws_cloudwatch_metric_alarm" "alarm_create" {
   threshold           = "1"
   alarm_actions       = [var.topic_arn]
 
-
-
   dimensions = {
     FunctionName = "my_api_gw_function"
   }
