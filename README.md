@@ -2,10 +2,11 @@
 In the AWS developer associate exam.  60% of the questions involved Serverless (lambda, and step functions), api gatway, api gatway logging, api gatway throtteling, xray.  This project was written to better understand what that involed and how to configure it in terraform
  
 
-# requirements
+# Requirements
 
 tree
 .<br>
+
 ├── README.md<br>
 ├── lambda_layer<br>
 │   └── xray-sdk.zip<br>
@@ -48,7 +49,7 @@ tree
     │       ├── sns.tf<br>
     │       └── variables<br>
     ├── outputs.tf<br>
-    └── variables.tf
+    └── variables.tf<br>
 
 
 This is to make a terraform  example REST based aws api gateway to lambda to dynamodb system.
@@ -125,6 +126,9 @@ i need full restful crud operations
 15) AWS API gateway profides documentation feature.   Generate any documentation for my api gateway stages and deployment
 16) the apti gateway terraform should be similar to this and needs to incude the AWS api gatway documentation
 17) needs to contain a deployment 
+18) AWS API Gateway and Lambda have special integration with both X-ray and parameter mapping.  
+    1) AWS API Gateway to other destination may need special mapping actions to and from.
+    2) Investigate integration requests and responses when the request or response needs to be massaged into an acceptable format. 
 
 ## Generate a testing python program
 1) prompts for the apt gateway url to test
