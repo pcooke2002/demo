@@ -11,49 +11,49 @@ here is my project directory project structure
 
 tree
 .
-├── README.md
-├── lambda_layer
-│   └── xray-sdk.zip
-├── make-layer-zip.sh
-├── mk_structure.sh
-├── test.sh
-└── terraform_project
-    ├── main.tf
-    ├── modules
-    │   ├── apigateway
-    │   │   ├── apigateway.tf
-    │   │   ├── outputs.tf
-    │   │   └── variables.tf
-    │   ├── cloudwatch
-    │   │   ├── log_group.tf
-    │   │   ├── metric_alarm.tf
-    │   │   ├── outputs.tf
-    │   │   └── variables.tf
-    │   ├── dynamodb
-    │   │   ├── dynamodb.tf
-    │   │   ├── outputs.tf
-    │   │   └── variables.tf
-    │   ├── lambda
-    │   │   ├── function.tf
-    │   │   ├── lambda_function
-    │   │   │   └── lambda_function.py
-    │   │   ├── outputs.tf
-    │   │   └── variables.tf
-    │   ├── lambda_iam
-    │   │   ├── iam.tf
-    │   │   ├── outputs.tf
-    │   │   └── variables.tf
-    │   ├── lambda_layer
-    │   │   ├── layer.tf
-    │   │   ├── outputs.tf
-    │   │   ├── variables.tf
-    │   │   └── xray-sdk.zip
-    │   └── sns
-    │       ├── outputs.tf
-    │       ├── sns.tf
-    │       └── variables
-    ├── outputs.tf
-    └── variables.tf
+├── README.md<br>
+├── lambda_layer<br>
+│   └── xray-sdk.zip<br>
+├── make-layer-zip.sh<br>
+├── mk_structure.sh<br>
+├── test.sh<br>
+└── terraform_project<br>
+    ├── main.tf<br>
+    ├── modules<br>
+    │   ├── apigateway<br>
+    │   │   ├── apigateway.tf<br>
+    │   │   ├── outputs.tf<br>
+    │   │   └── variables.tf<br>
+    │   ├── cloudwatch<br>
+    │   │   ├── log_group.tf<br>
+    │   │   ├── metric_alarm.tf<br>
+    │   │   ├── outputs.tf<br>
+    │   │   └── variables.tf<br>
+    │   ├── dynamodb<br>
+    │   │   ├── dynamodb.tf<br>
+    │   │   ├── outputs.tf<br>
+    │   │   └── variables.tf<br>
+    │   ├── lambda<br>
+    │   │   ├── function.tf<br>
+    │   │   ├── lambda_function<br>
+    │   │   │   └── lambda_function.py<br>
+    │   │   ├── outputs.tf<br>
+    │   │   └── variables.tf<br>
+    │   ├── lambda_iam<br>
+    │   │   ├── iam.tf<br>
+    │   │   ├── outputs.tf<br>
+    │   │   └── variables.tf<br>
+    │   ├── lambda_layer<br>
+    │   │   ├── layer.tf<br>
+    │   │   ├── outputs.tf<br>
+    │   │   ├── variables.tf<br>
+    │   │   └── xray-sdk.zip<br>
+    │   └── sns<br>
+    │       ├── outputs.tf<br>
+    │       ├── sns.tf<br>
+    │       └── variables<br>
+    ├── outputs.tf<br>
+    └── variables.tf<br>
    
 
 
