@@ -176,7 +176,7 @@ resource "aws_api_gateway_documentation_part" "my_doc" {
 
 resource "aws_cloudwatch_log_group" "api_gateway_logs" {
   name              = "${aws_api_gateway_rest_api.my_api.name}-logs"
-  retention_in_days = 14
+  retention_in_days = 1
 }
 
 resource "aws_api_gateway_stage" "default" {
