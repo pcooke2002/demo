@@ -7,5 +7,5 @@ resource "aws_sns_topic_subscription" "email_subscription" {
   topic_arn              = aws_sns_topic.my_topic.arn
   endpoint_auto_confirms = true
   protocol               = "email"
-  endpoint               = "pcooke2002@yahoo.com"
+  endpoint               = var.email_subscriber
 }

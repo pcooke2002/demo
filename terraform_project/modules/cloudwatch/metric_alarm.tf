@@ -47,13 +47,4 @@ resource "aws_cloudwatch_metric_alarm" "alarm_delete" {
   }
 }
 
-#resource "aws_sns_topic" "sns" {
-#  name = "my-topic"
-#}
-
-resource "aws_sns_topic_subscription" "email" {
-  topic_arn = var.topic_arn
-  protocol  = "email"
-  endpoint  = "pcooke2002@yahoo.com"
-}
 
