@@ -66,7 +66,7 @@ def delete_item():
 for count in range(1, 5):
     create_item()
     get_all_items()
-    get_item_by_id()https://z20vquvkn7.execute-api.us-east-1.amazonaws.com/poc"
+    get_item_by_id()
     update_item()
     get_all_items()
     get_item_by_id()
