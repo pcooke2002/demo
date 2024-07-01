@@ -52,3 +52,7 @@ module "lambda" {
   lambda_role     = module.lambda_iam.lambda_role_arn
   api_gateway_arn = module.apigateway.api_gateway_arn
 }
+
+module "ssm-automation" {
+  source = "./modules/ssm-automation"
+}
