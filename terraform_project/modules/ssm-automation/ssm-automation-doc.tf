@@ -17,7 +17,7 @@ resource "aws_ssm_document" "example" {
       "inputs": {
         "Runtime": "python3.11",
         "Handler": "script_handler",
-        "Script": "import boto3\nimport json\nimport pprint\ndef script_handler(event, context):\n    print('context=', context)\n    account_id = context.get('global:ACCOUNT_ID')\n    iam = boto3.client('iam')\n    roles = iam.list_roles()\n    pprint.pprint( roles)\n    return {'status': 'success'}"
+        "Script": "import boto3\nimport json\ndef script_handler(event, context):\n    account_id = context.get('global:ACCOUNT_ID')\n    iam = boto3.client('iam')\n    roles = iam.list_roles()\n    for role in roles['Roles']:\n        role_detail = iam.get_role(RoleName=role['RoleName'])\n        trust_policy = role_detail['Role']['AssumeRolePolicyDocument']\n        for statement in trust_policy['Statement']:\n            if 'AWS' in statement['Principal']:\n                principal_account_id = statement['Principal']['AWS'].split(':')[4]\n                if principal_account_id != account_id:\n                    print(f\"Role {role['Arn']} trusts role from account {principal_account_id}\")\n    return {'status': 'success'}"
       }
     }
   ]
