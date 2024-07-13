@@ -1,12 +1,12 @@
 resource "aws_ssm_document" "example" {
-  name          = "CrossAccountRoles"
+  name          = "CrossAccountRoles_report"
   document_type = "Automation"
 
   content = <<DOC
 {
   "schemaVersion": "0.3",
   "description": "Cross account role report. This automation document will list out all roles that allow cross account access.",
-  "assumeRole": "arn:aws:iam::033680424751:role/automation_executor",
+  "assumeRole": "${aws_iam_role.automation_executor.arn}",
   "mainSteps": [
     {
       "name": "RunScript",
@@ -26,7 +26,7 @@ DOC
 }
 
 resource "aws_iam_role" "automation_executor" {
-  name = "automation_executor"
+  name = "xacct_automation_report_executor"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
@@ -63,18 +63,26 @@ resource "aws_iam_role" "test_cross_acct_role" {
   })
 }
 
-resource "aws_iam_role_policy" "test_cross_acct_role_policy" {
-  name = "test_cross_acct_role_policy"
-  role = aws_iam_role.test_cross_acct_role.id
+resource "aws_iam_policy" "cross_account_automation_role_policy" {
+  name        = "xaccount_automation_policy"
+  description = "Cross account role automation policy"
 
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Action = "s3:ListBucket",
-        Resource = "*",
-        Effect = "Allow"
+        Effect = "Allow",
+        Action = [
+          "iam:GetRole",
+          "iam:ListRoles",
+          "logs:DescribeLogStreams",
+          "logs:DescribeLogGroups",
+          "logs:CreateLogStream",
+          "logs:CreateLogGroup"
+        ],
+        Resource = "*"
       }
     ]
   })
 }
+
