@@ -47,21 +47,21 @@ resource "aws_iam_role_policy_attachment" "automation_executor_policy" {
 }
 
 
-resource "aws_iam_role" "test_cross_acct_role" {
-  name = "test_cross_acct_role"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Action = "sts:AssumeRole",
-        Principal = {
-          AWS = "arn:aws:iam::767398046073:root"
-        },
-        Effect = "Allow"
-      }
-    ]
-  })
-}
+# resource "aws_iam_role" "test_cross_acct_role" {
+#   name = "test_cross_acct_role"
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17",
+#     Statement = [
+#       {
+#         Action = "sts:AssumeRole",
+#         Principal = {
+#           AWS = "arn:aws:iam::767398046073:root"
+#         },
+#         Effect = "Allow"
+#       }
+#     ]
+#   })
+# }
 
 resource "aws_iam_policy" "cross_account_automation_role_policy" {
   name        = "xaccount_report_automation_policy"
@@ -86,3 +86,46 @@ resource "aws_iam_policy" "cross_account_automation_role_policy" {
   })
 }
 
+resource "aws_iam_role" "cloud_ops_role" {
+  name = "cloud_ops_role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = "sts:AssumeRole",
+        Principal = {
+          AWS = ["arn:aws:iam::033680424751:user/admin1"]
+        },
+        Effect = "Allow"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy" "cloud_ops_policy" {
+  name        = "cloud_ops_policy"
+  description = "Policy for cloud_ops_role"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "ssm:List*",
+          "ssm:Describe*",
+          "ssm:Get*",
+          "ssm:StartAutomationExecution",
+          "ssm:StopAutomationExecution",
+          "cloudwatch:PutMetricAlarm"
+        ],
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "cloud_ops_policy_attachment" {
+  role       = aws_iam_role.cloud_ops_role.name
+  policy_arn = aws_iam_policy.cloud_ops_policy.arn
+}
