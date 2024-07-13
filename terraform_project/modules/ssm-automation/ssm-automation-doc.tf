@@ -64,8 +64,8 @@ resource "aws_iam_role" "test_cross_acct_role" {
 }
 
 resource "aws_iam_policy" "cross_account_automation_role_policy" {
-  name        = "xaccount_automation_policy"
-  description = "Cross account role automation policy"
+  name        = "xaccount_report_automation_policy"
+  description = "Cross account role report automation policy"
 
   policy = jsonencode({
     Version = "2012-10-17",
