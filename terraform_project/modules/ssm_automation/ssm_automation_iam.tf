@@ -8,7 +8,7 @@ resource "aws_iam_role" "cloud_ops_role" {
       {
         Action = "sts:AssumeRole",
         Principal = {
-          Service = "lambda.amazonaws.com"
+          AWS = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/admin1"]
         },
         Effect = "Allow"
       }
@@ -32,6 +32,7 @@ resource "aws_iam_policy" "cloud_ops_policy" {
           "ssm:StartAutomationExecution",
           "ssm:StopAutomationExecution",
           "cloudwatch:PutMetricAlarm",
+          "cloudwatch:DescribeAlarms",
           "iam:GetRole",
 
         ],
