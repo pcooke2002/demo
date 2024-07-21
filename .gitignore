@@ -36,3 +36,4 @@ terraform.rc
 .idea
 .idea/**
 .terraform*
+.DS_Store

@@ -53,6 +53,10 @@ module "lambda" {
   api_gateway_arn = module.apigateway.api_gateway_arn
 }
 
-module "ssm-automation" {
-  source = "./modules/ssm-automation"
+module "ssm_automation" {
+  source = "./modules/ssm_automation"
+}
+
+module "looping_ssm_automation" {
+  source = "./modules/ssm_automation/template_automation"
 }
