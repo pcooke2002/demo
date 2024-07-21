@@ -17,6 +17,8 @@
 #   content = templatefile("${path.module}/looping_template.tftpl", {
 #     arg_map = var.arg_map
 #     account_number = data.aws_caller_identity.current.account_id
+#     function_arn = aws_lambda_function.looping_template_lambda.arn
+#     assume_role_arn = aws_iam_role.looping_template_lambda_automation_role.arn
 #   })
 # }
 #
@@ -26,8 +28,8 @@
 #   function_name = "looping_template_lambda"
 #   handler       = "echo_lambda.lambda_handler"
 #   runtime       = "python3.12"
-#   role          = aws_iam_role.lambda_role.arn
-#   filename      = "${path.module}/ssm_automation/lambda_function.zip"
+#   role          = aws_iam_role.looping_template_lambda_automation_role.arn
+#   filename      = "${path.module}/lambda_function.zip"
 # }
 #
 # data "archive_file" "lambda_zip" {
@@ -38,18 +40,18 @@
 #
 #
 #
-# resource "aws_iam_role" "lambda_role" {
-#   name = "lambda_role"
+# resource "aws_iam_role" "looping_template_lambda_automation_role" {
+#   name = "looping_template_lambda_automation_role"
 #   assume_role_policy = jsonencode({
-#     Version = "2012-10-17",
-#     Statement = [
-#       {
-#         Action = "sts:AssumeRole",
-#         Principal = {
-#           Service = "lambda.amazonaws.com"
-#         },
-#         Effect = "Allow",
+#   "Version": "2012-10-17",
+#   "Statement": [
+#     {
+#       "Effect": "Allow",
+#       "Principal": {
+#         "Service": "ssm.amazonaws.com"
 #       },
-#     ],
-#   })
+#       "Action": "sts:AssumeRole"
+#     }
+#   ]
+# })
 # }
