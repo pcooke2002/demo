@@ -53,9 +53,10 @@ resource "aws_iam_role_policy_attachment" "cloud_ops_policy_attachment" {
   policy_arn = aws_iam_policy.cloud_ops_policy.arn
 }
 
-variable "other_acct" {
-  default   = "767398046073"
+variable "xacct_report_other_acct" {
+#   default   = "767398046073"
   sensitive = true
+  type      = string
 }
 
 resource "aws_iam_role" "xacct_fake_test_role" {
@@ -66,7 +67,7 @@ resource "aws_iam_role" "xacct_fake_test_role" {
       {
         Action = "sts:AssumeRole",
         Principal = {
-          AWS = ["arn:aws:iam::${var.other_acct}:role/fake_role"]
+          AWS = ["arn:aws:iam::${var.xacct_report_other_acct}:role/fake_role"]
         },
         Effect = "Allow"
       }

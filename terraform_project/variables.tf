@@ -21,3 +21,9 @@ variable "stage_poc" {
   type        = string
   default     = "poc"
 }
+
+variable "xacct_report_other_acct" {
+  description = "Cross account report account number for report"
+  type        = string
+  default     = "767398046073"
+}

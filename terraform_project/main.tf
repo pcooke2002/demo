@@ -55,6 +55,7 @@ module "lambda" {
 
 module "ssm_automation" {
   source = "./modules/ssm_automation"
+  xacct_report_other_acct = var.xacct_report_other_acct
 }
 
 module "looping_ssm_automation" {
