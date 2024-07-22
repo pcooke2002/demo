@@ -1,6 +1,7 @@
 ${jsonencode({
   "schemaVersion": "0.3",
   "description": "My description.",
+  "assumeRole": "${assume_role_arn}"
   "mainSteps": [
     for key, values in arg_map:
     {
@@ -8,7 +9,7 @@ ${jsonencode({
       "name": "InvokeLambdaFunction${key}",
       "action": "aws:invokeLambdaFunction",
       "inputs": {
-        "FunctionName": "arn:aws:lambda:us-east-1:${account_number}:function:hello:$LATEST",
+        "FunctionName": "${function_arn}",
         "InvocationType": "RequestResponse",
         "Payload": "{  \"${values[0]}\" : \"${values[1]}\"}"
       }

@@ -53,6 +53,7 @@ resource "aws_iam_role_policy_attachment" "cloud_ops_policy_attachment" {
   policy_arn = aws_iam_policy.cloud_ops_policy.arn
 }
 
+
 variable "xacct_report_other_acct" {
 #   default   = "767398046073"
   sensitive = true
