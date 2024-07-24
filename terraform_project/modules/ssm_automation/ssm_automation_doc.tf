@@ -43,7 +43,7 @@ resource "aws_iam_role" "xacct_report_executor_role" {
 
 resource "aws_iam_role_policy_attachment" "xacct_report_executor_role_policy" {
   role       = aws_iam_role.xacct_report_executor_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+  policy_arn = aws_iam_policy.cross_account_automation_role_policy.arn
 }
 
 
