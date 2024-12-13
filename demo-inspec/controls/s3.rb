@@ -9,7 +9,7 @@ control 'aws-s3-buckets' do
   input('aws_s3_bucket_names').each do |bucket_name|
     describe aws_s3_bucket(bucket_name: bucket_name) do
         it { should exist }
-#       its('bucket_acl') { should_not include('public-read') }
+        its('bucket_acl') { should_not include('public-read') }
     end
   end
 end
