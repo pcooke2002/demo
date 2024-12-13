@@ -1,6 +1,9 @@
 # Purpose
 In the AWS developer associate exam.  60% of the questions involved Serverless (lambda, and step functions), api gatway, api gatway logging, api gatway throtteling, xray.  This project was written to better understand what that involed and how to configure it in terraform
- 
+
+# exec inspec
+AWS_PROFILE=admin1 inspec exec demo-inspec -t aws:// --filter-empty-profiles
+
 
 # Requirements
 

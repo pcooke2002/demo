@@ -5,6 +5,7 @@ variable "arg_map" {
     "key2" = ["d", "e"]
     "key3" = ["g", "h"]
     "key4" = ["j", "k"]
+    "key5" = ["m", "n"]
   }
 }
 
