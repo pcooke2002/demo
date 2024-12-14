@@ -16,3 +16,11 @@ inputs:
     value:
       - simple-user-bucket-pcooke2002
       - xray-sdk-layer-bucket
+  - name: rest_api_gw_id
+    description: 'ID of the AWS API Gateway'
+    type: String
+    value: 'dnpjo12eza'
+  - name: rest_gateway_resource_id
+    description: 'ID of the resource within the AWS API Gateway'
+    type: String
+    value: '0kvgjb2m25'
