@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+
+#gem 'inspec'
+
+gem 'inspec-aws', git: 'https://github.com/inspec/inspec-aws.git'

@@ -1,0 +1,30 @@
+name: demo-inspec
+title: Demo InSpec Profile
+maintainer: Your Name
+copyright: Your Company
+license: Apache-2.0
+summary: An InSpec Compliance Profile
+version: 0.1.0
+depends:
+  - name: inspec-aws
+    url: https://github.com/inspec/inspec-aws/archive/main.tar.gz
+
+inputs:
+  - name: aws_s3_bucket_names
+    description: 'List of AWS S3 bucket names'
+    type: Array
+    value:
+      - simple-user-bucket-pcooke2002
+      - xray-sdk-layer-bucket
+  - name: rest_api_gw_id
+    description: 'ID of the AWS API Gateway'
+    type: String
+    value: '4eiqnirfyc' #dnpjo12eza
+  - name: rest_gateway_resource_id
+    description: 'ID of the resource within the AWS API Gateway'
+    type: String
+    value: 'vy5o5p'
+  - name: deployment_id
+    description: 'ID of the deployment'
+    type: String
+    value: 'l1bizq'
