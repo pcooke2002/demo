@@ -118,8 +118,9 @@ resource "aws_api_gateway_deployment" "api_deployment" {
     aws_api_gateway_integration.lambda_delete,
     aws_api_gateway_integration.lambda_options
   ]
-
+  description = "Deployment for my_api."
   rest_api_id = aws_api_gateway_rest_api.my_api.id
+
   #  stage_name  = "v1"
 }
 
