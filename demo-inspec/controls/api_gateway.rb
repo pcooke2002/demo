@@ -14,7 +14,7 @@ control 'api-gateway-exists' do
     its('resource_methods') { should_not be_nil }
     puts "*********"
     puts it
-#     binding.pry
+    binding.pry
   end
 end
 
